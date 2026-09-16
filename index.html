@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Identity Ledger — portable, verifiable agent identity cards</title>
+<meta name="description" content="Mint and verify portable Ed25519-signed identity cards for AI agents. A card proves key ownership — not good behavior.">
+<link rel="stylesheet" href="styles.css">
+<script src="vendor/nacl.js"></script>
+<script src="identity.js"></script>
+<script src="https://cumulativewebinc.github.io/cwi-i18n/i18n.js" data-app="identity-ledger"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <div class="brand-badge">CWI</div>
+    <div>
+      <h1 data-i18n="app.title">Identity Ledger</h1>
+      <p class="tagline" data-i18n="app.tagline">Portable, verifiable identity cards for AI agents — a passport no venue can lock.</p>
+    </div>
+  </div>
+  <div class="coverage-pill" data-i18n="app.coverage">10 CWI agent cards live · Ed25519-signed · verify offline</div>
+</header>
+
+<main>
+  <nav class="tabs" role="tablist" aria-label="Identity Ledger sections">
+    <button class="tab" role="tab" id="tab-mint" aria-selected="true" aria-controls="panel-mint" data-i18n="tabs.mint">Mint</button>
+    <button class="tab" role="tab" id="tab-verify" aria-selected="false" aria-controls="panel-verify" data-i18n="tabs.verify">Verify</button>
+    <button class="tab" role="tab" id="tab-dir" aria-selected="false" aria-controls="panel-dir" data-i18n="tabs.directory">Directory</button>
+  </nav>
+
+  <!-- MINT -->
+  <section class="panel" id="panel-mint" role="tabpanel" aria-labelledby="tab-mint">
+    <h2 data-i18n="mint.title">Mint an identity card</h2>
+    <p class="hint" data-i18n="mint.intro">A keypair is generated in your browser and the card is signed locally. Nothing is uploaded anywhere.</p>
+
+    <label class="big-label" for="m-name" data-i18n="mint.name">Agent name</label>
+    <input type="text" id="m-name" data-i18n-ph="mint.name_ph" placeholder="e.g. KingCode" autocomplete="off">
+
+    <label class="big-label" for="m-controller" data-i18n="mint.controller">Controller</label>
+    <input type="text" id="m-controller" data-i18n-ph="mint.controller_ph" placeholder="e.g. Cumulative Web Inc" autocomplete="off">
+    <p class="hint" data-i18n="mint.controller_hint">The legal entity that holds the keys. Trust the controller, then verify the math.</p>
+
+    <label class="big-label" for="m-venues" data-i18n="mint.venues">Venues (one per line: venue = handle)</label>
+    <textarea id="m-venues" rows="3" data-i18n-ph="mint.venues_ph" placeholder="moltbook = muse_cwi&#10;github = CumulativeWebInc"></textarea>
+
+    <label class="big-label" for="m-claims" data-i18n="mint.claims">Claims (one per line)</label>
+    <textarea id="m-claims" rows="3" data-i18n-ph="mint.claims_ph" placeholder="Chief of staff&#10;Agent Deck operator"></textarea>
+    <p class="hint" data-i18n="mint.claims_hint">Claims are assertions the controller makes — they are not proofs.</p>
+
+    <div class="row two">
+      <div>
+        <label class="big-label" for="m-years" data-i18n="mint.validity">Validity</label>
+        <select id="m-years">
+          <option value="1" data-i18n="mint.y1">1 year</option>
+          <option value="2" data-i18n="mint.y2">2 years</option>
+          <option value="5" data-i18n="mint.y5">5 years</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="primary" id="mintBtn" data-i18n="mint.button">Generate keys &amp; sign card</button>
+    </div>
+
+    <div id="mintResult" hidden>
+      <h2 data-i18n="mint.done">Card signed</h2>
+      <div class="keybox">
+        <div class="warn" data-i18n="mint.priv_warn">Private key (seed, base64) — save it now. It never leaves your browser and cannot be recovered.</div>
+        <div id="privOut"></div>
+      </div>
+      <pre class="out" id="cardOut"></pre>
+      <div class="actions">
+        <button class="ghost small" id="dlCard" data-i18n="mint.download_card">Download card JSON</button>
+        <button class="ghost small" id="dlPriv" data-i18n="mint.download_priv">Download private key</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERIFY -->
+  <section class="panel" id="panel-verify" role="tabpanel" aria-labelledby="tab-verify" hidden>
+    <h2 data-i18n="verify.title">Verify an identity card</h2>
+    <p class="hint" data-i18n="verify.intro">Paste a card JSON, or open a <code>?card=&lt;id&gt;</code> deep link — the card is fetched from the directory and checked.</p>
+
+    <label class="big-label" for="v-input" data-i18n="verify.label">Card JSON</label>
+    <textarea id="v-input" rows="8" data-i18n-ph="verify.placeholder" placeholder='{"id":"idc_…","schema":"cwi.identity-card/1.0",…}'></textarea>
+    <div class="actions">
+      <button class="primary" id="verifyBtn" data-i18n="verify.button">Verify signature</button>
+      <button class="ghost" id="verifyClear" data-i18n="verify.clear">Clear</button>
+    </div>
+    <div class="verdict" id="verdict" aria-live="polite">
+      <div class="status" id="verdictStatus"></div>
+      <ul id="verdictReasons"></ul>
+    </div>
+  </section>
+
+  <!-- DIRECTORY -->
+  <section class="panel" id="panel-dir" role="tabpanel" aria-labelledby="tab-dir" hidden>
+    <h2 data-i18n="dir.title">CWI agent directory</h2>
+    <p class="hint" data-i18n="dir.intro">The 10 real CWI agent cards. Every card verifies offline — no trust in CWI's servers required.</p>
+    <div class="card-grid" id="dirGrid" aria-live="polite"></div>
+  </section>
+
+  <section class="honest">
+    <h2 data-i18n="limits.title">Honest limits</h2>
+    <ul>
+      <li data-i18n="limits.l1">A card proves key ownership — not good behavior.</li>
+      <li data-i18n="limits.l2">Trust the controller, then verify the math.</li>
+      <li data-i18n="limits.l3">Private keys never leave your browser.</li>
+      <li><span data-i18n="limits.l4">Revocation is checked against this list only:</span> <a href="revocations.json">revocations.json</a></li>
+    </ul>
+  </section>
+
+  <section class="panel agent-panel">
+    <h2 data-i18n="agent.title">For agents</h2>
+    <p><span data-i18n="agent.line1">Machine-readable:</span>
+      <code>?card=&lt;id&gt;</code>
+      · <a href="cards.json" data-i18n="agent.index">card index</a>
+      · <a href="schema/identity-card.schema.json" data-i18n="agent.schema">card schema (cwi.identity-card/1.0)</a>
+      · <a href="identity.js" data-i18n="agent.engine">identity.js engine (zero-dep UMD)</a></p>
+  </section>
+</main>
+
+<footer>
+  <p data-i18n="footer.line">Identity Ledger · Cumulative Web Inc · Agent Deck SKU #37 · Ed25519 by tweetnacl (vendored, public domain).</p>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var IL = window.IdentityLedger;
+
+  // ---- tabs ----
+  var tabs = ['mint', 'verify', 'dir'];
+  function selectTab(name) {
+    tabs.forEach(function (t) {
+      var on = t === name;
+      document.getElementById('tab-' + t).setAttribute('aria-selected', on ? 'true' : 'false');
+      document.getElementById('panel-' + t).hidden = !on;
+    });
+    if (name === 'dir') loadDirectory();
+  }
+  tabs.forEach(function (t) {
+    document.getElementById('tab-' + t).addEventListener('click', function () { selectTab(t); });
+  });
+
+  // ---- mint ----
+  var lastMint = null;
+  function parseLines(text, sep) {
+    return text.split('\n').map(function (l) { return l.trim(); }).filter(Boolean);
+  }
+  document.getElementById('mintBtn').addEventListener('click', function () {
+    var name = document.getElementById('m-name').value.trim();
+    var controller = document.getElementById('m-controller').value.trim();
+    var venues = parseLines(document.getElementById('m-venues').value).map(function (l) {
+      var i = l.indexOf('=');
+      if (i === -1) return { venue: l, handle: '' };
+      return { venue: l.slice(0, i).trim(), handle: l.slice(i + 1).trim() };
+    }).filter(function (v) { return v.venue && v.handle; });
+    var claims = parseLines(document.getElementById('m-claims').value);
+    if (!name || !controller) { alert('Name and controller are required.'); return; }
+    if (!venues.length) { alert('Add at least one venue = handle line.'); return; }
+    var years = parseInt(document.getElementById('m-years').value, 10) || 1;
+    var now = new Date();
+    var exp = new Date(now.getTime()); exp.setUTCFullYear(exp.getUTCFullYear() + years);
+    try {
+      var kp = IL.generateKeypair();
+      var card = IL.assembleCard({
+        name: name, controller: controller, venues: venues, claims: claims,
+        issued_at: now.toISOString(), expires_at: exp.toISOString()
+      }, kp);
+      lastMint = { card: card, kp: kp };
+      document.getElementById('privOut').textContent = kp.privateKeyB64;
+      document.getElementById('cardOut').textContent = JSON.stringify(card, null, 2);
+      document.getElementById('mintResult').hidden = false;
+    } catch (e) { alert('Mint failed: ' + e.message); }
+  });
+  function download(name, text) {
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+    a.download = name; document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+  document.getElementById('dlCard').addEventListener('click', function () {
+    if (lastMint) download(lastMint.card.id + '.json', JSON.stringify(lastMint.card, null, 2));
+  });
+  document.getElementById('dlPriv').addEventListener('click', function () {
+    if (lastMint) download(lastMint.card.id + '.private-key.txt',
+      'IDENTITY LEDGER PRIVATE KEY SEED (base64)\ncard: ' + lastMint.card.id + '\n\n' + lastMint.kp.privateKeyB64 + '\n');
+  });
+
+  // ---- verify ----
+  var revocations = null;
+  function getRevocations(cb) {
+    if (revocations) return cb(revocations);
+    fetch('revocations.json').then(function (r) { return r.json(); }).then(function (j) {
+      revocations = j; cb(j);
+    }).catch(function () { cb(null); });
+  }
+  function showVerdict(res) {
+    var box = document.getElementById('verdict');
+    box.className = 'verdict show ' + res.status;
+    document.getElementById('verdictStatus').textContent = res.status.replace(/_/g, ' ');
+    var ul = document.getElementById('verdictReasons'); ul.innerHTML = '';
+    res.reasons.forEach(function (r) {
+      var li = document.createElement('li'); li.textContent = r; ul.appendChild(li);
+    });
+  }
+  function verifyObject(card) {
+    getRevocations(function (rev) { showVerdict(IL.verifyCard(card, { revocations: rev })); });
+  }
+  document.getElementById('verifyBtn').addEventListener('click', function () {
+    var raw = document.getElementById('v-input').value.trim();
+    if (!raw) return;
+    try { verifyObject(JSON.parse(raw)); }
+    catch (e) { showVerdict({ status: 'MALFORMED', reasons: ['not valid JSON: ' + e.message] }); }
+  });
+  document.getElementById('verifyClear').addEventListener('click', function () {
+    document.getElementById('v-input').value = '';
+    document.getElementById('verdict').className = 'verdict';
+  });
+
+  // ---- directory ----
+  var dirLoaded = false;
+  function loadDirectory() {
+    if (dirLoaded) return; dirLoaded = true;
+    var grid = document.getElementById('dirGrid');
+    fetch('cards.json').then(function (r) { return r.json(); }).then(function (idx) {
+      getRevocations(function (rev) {
+        idx.cards.forEach(function (entry) {
+          fetch(entry.url).then(function (r) { return r.json(); }).then(function (card) {
+            var res = IL.verifyCard(card, { revocations: rev });
+            var div = document.createElement('div');
+            div.className = 'dir-card';
+            var venues = card.venues.map(function (v) { return v.venue + ': ' + v.handle; }).join(' · ');
+            div.innerHTML =
+              '<h3></h3><div class="handle"></div><div class="cid"></div>' +
+              '<div class="claims"></div><div class="status"></div><a></a>';
+            div.querySelector('h3').textContent = card.name;
+            div.querySelector('.handle').textContent = venues;
+            div.querySelector('.cid').textContent = card.id;
+            div.querySelector('.claims').textContent = card.claims.join(' · ');
+            var st = div.querySelector('.status');
+            st.textContent = res.status === 'VALID' ? '✓ VALID signature' : '✗ ' + res.status;
+            st.style.color = res.status === 'VALID' ? 'var(--green)' : 'var(--red)';
+            var a = div.querySelector('a');
+            a.href = '?card=' + card.id; a.textContent = 'Verify this card →';
+            grid.appendChild(div);
+          });
+        });
+      });
+    }).catch(function () {
+      grid.innerHTML = '<p class="hint">Could not load the directory.</p>';
+    });
+  }
+
+  // ---- deep link ----
+  var deepId = IL.parseCardParam(window.location.href);
+  if (deepId) {
+    selectTab('verify');
+    fetch('cards/' + deepId + '.json').then(function (r) {
+      if (!r.ok) throw new Error('card not found: ' + deepId);
+      return r.json();
+    }).then(function (card) {
+      document.getElementById('v-input').value = JSON.stringify(card, null, 2);
+      verifyObject(card);
+    }).catch(function (e) {
+      showVerdict({ status: 'MALFORMED', reasons: [e.message] });
+    });
+  }
+})();
+</script>
+</body>
+</html>

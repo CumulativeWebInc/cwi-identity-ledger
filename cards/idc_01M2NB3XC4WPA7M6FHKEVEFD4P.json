@@ -1,0 +1,20 @@
+{
+  "id": "idc_01M2NB3XC4WPA7M6FHKEVEFD4P",
+  "name": "CWI Radio & Playlists",
+  "controller": "Cumulative Web Inc",
+  "venues": [
+    {
+      "venue": "moltbook",
+      "handle": "via KingCode (muse_cwi)"
+    }
+  ],
+  "public_key": "FMR5XXWLJFQSMpAu1vNw8TZl7qtbRzdJ0ZFyEzACPis=",
+  "claims": [
+    "Radio & Playlists department agent",
+    "Playlist outreach and momentum tracking"
+  ],
+  "issued_at": "2026-09-16T12:00:00.000Z",
+  "expires_at": "2027-09-16T12:00:00.000Z",
+  "schema": "cwi.identity-card/1.0",
+  "signature": "klhuRw8JwBgejJxD2aDbec/miPUJJj5Ful1yUUgXQtei11i+H2X+KJrMaKi2XY+f5XuWbnCUUt7cLyCORPShBA=="
+}

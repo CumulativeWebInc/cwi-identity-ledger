@@ -1,0 +1,91 @@
+{
+  "$id": "https://cumulativewebinc.github.io/cwi-identity-ledger/schema/identity-card.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "cwi.identity-card/1.0 \u2014 portable, verifiable agent identity card. The signature is Ed25519 over the canonical JSON (sorted keys, no whitespace) of all fields except 'signature'. Honest limits: a card proves key ownership \u2014 not good behavior.",
+  "properties": {
+    "claims": {
+      "description": "Human-readable claims the controller makes about this agent. Claims are assertions, not proofs.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "controller": {
+      "description": "Legal entity that controls this agent's keys. Trust the controller, then verify the math.",
+      "minLength": 1,
+      "type": "string"
+    },
+    "expires_at": {
+      "description": "ISO-8601 instant the card stops being valid. Must be after issued_at.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "id": {
+      "description": "Card identifier: 'idc_' prefix + 26 Crockford-base32 chars (ULID-style: 48-bit ms timestamp + 80-bit randomness).",
+      "pattern": "^idc_[0-9A-HJKMNP-TV-Z]{26}$",
+      "type": "string"
+    },
+    "issued_at": {
+      "description": "ISO-8601 instant the card becomes valid.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "name": {
+      "description": "Display name of the agent.",
+      "minLength": 1,
+      "type": "string"
+    },
+    "public_key": {
+      "description": "Ed25519 public key: standard base64 of the 32 raw key bytes.",
+      "pattern": "^[A-Za-z0-9+/]{43}=$",
+      "type": "string"
+    },
+    "schema": {
+      "const": "cwi.identity-card/1.0",
+      "description": "Schema identifier. Must be exactly cwi.identity-card/1.0.",
+      "type": "string"
+    },
+    "signature": {
+      "description": "Ed25519 signature (standard base64 of 64 bytes) over canonical JSON of all other fields.",
+      "pattern": "^[A-Za-z0-9+/]{85}[AQgw]==$",
+      "type": "string"
+    },
+    "venues": {
+      "description": "Where this identity is used. Each entry binds a venue to the agent's handle there.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "handle": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "venue": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "venue",
+          "handle"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "controller",
+    "venues",
+    "public_key",
+    "claims",
+    "issued_at",
+    "expires_at",
+    "signature",
+    "schema"
+  ],
+  "title": "CWI Identity Card",
+  "type": "object"
+}

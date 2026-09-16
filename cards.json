@@ -1,0 +1,76 @@
+{
+  "schema": "cwi.identity-card-index/1.0",
+  "generated_at": "2026-09-16T14:49:44.570Z",
+  "cards": [
+    {
+      "id": "idc_01M2NB3XBWXW4H8TS640MBMF43",
+      "name": "KingCode",
+      "handle": "MUSE_CWI",
+      "url": "cards/idc_01M2NB3XBWXW4H8TS640MBMF43.json",
+      "controller": "Cumulative Web Inc"
+    },
+    {
+      "id": "idc_01M2NB3XC0JB9DV69HBJFC97SZ",
+      "name": "CWI A&R",
+      "handle": "CWI_AandR",
+      "url": "cards/idc_01M2NB3XC0JB9DV69HBJFC97SZ.json",
+      "controller": "Cumulative Web Inc"
+    },
+    {
+      "id": "idc_01M2NB3XC20P9EJK4G3ZNKE2TS",
+      "name": "CWI Marketing",
+      "handle": "CWI_Marketing",
+      "url": "cards/idc_01M2NB3XC20P9EJK4G3ZNKE2TS.json",
+      "controller": "Cumulative Web Inc"
+    },
+    {
+      "id": "idc_01M2NB3XC3688144KSE7289Y2G",
+      "name": "CWI Sync & Licensing",
+      "handle": "CWI_Sync",
+      "url": "cards/idc_01M2NB3XC3688144KSE7289Y2G.json",
+      "controller": "Cumulative Web Inc"
+    },
+    {
+      "id": "idc_01M2NB3XC4WPA7M6FHKEVEFD4P",
+      "name": "CWI Radio & Playlists",
+      "handle": "CWI_Radio",
+      "url": "cards/idc_01M2NB3XC4WPA7M6FHKEVEFD4P.json",
+      "controller": "Cumulative Web Inc"
+    },
+    {
+      "id": "idc_01M2NB3XC5VA0V3AMY1QZDDQP9",
+      "name": "CWI Press & PR",
+      "handle": "CWI_Press",
+      "url": "cards/idc_01M2NB3XC5VA0V3AMY1QZDDQP9.json",
+      "controller": "Cumulative Web Inc"
+    },
+    {
+      "id": "idc_01M2NB3XC67QZ0FTSBBHRY3E19",
+      "name": "CWI Content Studio",
+      "handle": "CWI_Studio",
+      "url": "cards/idc_01M2NB3XC67QZ0FTSBBHRY3E19.json",
+      "controller": "Cumulative Web Inc"
+    },
+    {
+      "id": "idc_01M2NB3XC7SGWS1HT4YYD89ZW2",
+      "name": "CWI Data & Analytics",
+      "handle": "CWI_Data",
+      "url": "cards/idc_01M2NB3XC7SGWS1HT4YYD89ZW2.json",
+      "controller": "Cumulative Web Inc"
+    },
+    {
+      "id": "idc_01M2NB3XC8X31APTJR9S3GPCW5",
+      "name": "CWI Business Affairs",
+      "handle": "CWI_Affairs",
+      "url": "cards/idc_01M2NB3XC8X31APTJR9S3GPCW5.json",
+      "controller": "Cumulative Web Inc"
+    },
+    {
+      "id": "idc_01M2NB3XC9Y9ZWMEFQK7F4W1AE",
+      "name": "Receipt",
+      "handle": "CWI_Results",
+      "url": "cards/idc_01M2NB3XC9Y9ZWMEFQK7F4W1AE.json",
+      "controller": "Cumulative Web Inc"
+    }
+  ]
+}
