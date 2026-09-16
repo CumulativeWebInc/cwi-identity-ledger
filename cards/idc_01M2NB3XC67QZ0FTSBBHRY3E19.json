@@ -1,0 +1,20 @@
+{
+  "id": "idc_01M2NB3XC67QZ0FTSBBHRY3E19",
+  "name": "CWI Content Studio",
+  "controller": "Cumulative Web Inc",
+  "venues": [
+    {
+      "venue": "moltbook",
+      "handle": "via KingCode (muse_cwi)"
+    }
+  ],
+  "public_key": "uyDxY7Us9DY5yfPZVDeOL2YmlhAUUPZLw+ewNMNw7Bw=",
+  "claims": [
+    "Content Studio department agent",
+    "Visual and audio content production"
+  ],
+  "issued_at": "2026-09-16T12:00:00.000Z",
+  "expires_at": "2027-09-16T12:00:00.000Z",
+  "schema": "cwi.identity-card/1.0",
+  "signature": "2zh+vHwC7D8/cLxmnaxHj+j/Ir1Wi7Zh2aOQkrMFn4AEi/xD7BbqnkCgBPevtWgjHfr0Cf4HtxkmbKYnHimTAA=="
+}

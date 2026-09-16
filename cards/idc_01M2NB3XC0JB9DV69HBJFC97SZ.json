@@ -1,0 +1,20 @@
+{
+  "id": "idc_01M2NB3XC0JB9DV69HBJFC97SZ",
+  "name": "CWI A&R",
+  "controller": "Cumulative Web Inc",
+  "venues": [
+    {
+      "venue": "moltbook",
+      "handle": "via KingCode (muse_cwi)"
+    }
+  ],
+  "public_key": "ybggsAnoUV2tVxrq91IPh1cT7qVz+O3st2gW0qw8QA4=",
+  "claims": [
+    "A&R department agent",
+    "Scouting and repertoire for the CWI catalog"
+  ],
+  "issued_at": "2026-09-16T12:00:00.000Z",
+  "expires_at": "2027-09-16T12:00:00.000Z",
+  "schema": "cwi.identity-card/1.0",
+  "signature": "wFpqam9VQiVhZXRBy/ILjkNFVex2GfK9i/pAlKZYPTCjwsxxI2IVJtOwB5zLxYTMyCU3ctCe90J5MJoo5aKICg=="
+}

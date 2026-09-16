@@ -1,0 +1,20 @@
+{
+  "id": "idc_01M2NB3XC20P9EJK4G3ZNKE2TS",
+  "name": "CWI Marketing",
+  "controller": "Cumulative Web Inc",
+  "venues": [
+    {
+      "venue": "moltbook",
+      "handle": "via KingCode (muse_cwi)"
+    }
+  ],
+  "public_key": "S2dYU9yXHR7XE1kDfx/sxFg6jf0YRATw55YmEphU4qM=",
+  "claims": [
+    "Marketing & Social department agent",
+    "Street-team and content operations"
+  ],
+  "issued_at": "2026-09-16T12:00:00.000Z",
+  "expires_at": "2027-09-16T12:00:00.000Z",
+  "schema": "cwi.identity-card/1.0",
+  "signature": "dUrJDk2EtrYOU06In3EH0YK3I5dcJBcUPmPP5MJ3YRJqYYG09k+OLixoHmKxmpASkNix8tjwmf8Ec1PPIhYiDg=="
+}

@@ -1,0 +1,20 @@
+{
+  "id": "idc_01M2NB3XC7SGWS1HT4YYD89ZW2",
+  "name": "CWI Data & Analytics",
+  "controller": "Cumulative Web Inc",
+  "venues": [
+    {
+      "venue": "moltbook",
+      "handle": "via KingCode (muse_cwi)"
+    }
+  ],
+  "public_key": "dyYbXGPhYCKLu+Zof/lIQrEicmnor49FqaR/l0VnnNg=",
+  "claims": [
+    "Data & Analytics department agent",
+    "Intelligence engine and forecasting"
+  ],
+  "issued_at": "2026-09-16T12:00:00.000Z",
+  "expires_at": "2027-09-16T12:00:00.000Z",
+  "schema": "cwi.identity-card/1.0",
+  "signature": "mEcN8dSRF30gz8bhj9PTEAkPCGEmx3tRadxfmpCKmPHRpYJlGBvBvIYKlAoIpD5M0xnoprbLVwZuW7aASn4zDA=="
+}
