@@ -1,0 +1,70 @@
+{
+ "id": "rt-2026-09-23",
+ "target": "Identity Ledger OS retrofit (https://cumulativewebinc.github.io/cwi-identity-ledger/)",
+ "attacker_urn": "urn:cwi:agent:retrofit-wave2-worker",
+ "started_at": "2026-09-23T12:00:00Z",
+ "completed_at": "2026-09-23T12:30:00Z",
+ "verdict": "cleared",
+ "checklist": [
+  {
+   "item": "failure-modes",
+   "disposition": "passed",
+   "finding": "6 verification statuses incl. REVOKED/EXPIRED/TAMPERED"
+  },
+  {
+   "item": "exploit-vectors",
+   "disposition": "passed",
+   "finding": "static; mint happens in visitor browser; no key transmission"
+  },
+  {
+   "item": "weakest-assumption",
+   "disposition": "mitigated",
+   "finding": "card proves key ownership not good behavior \u2014 labeled in UI + README"
+  },
+  {
+   "item": "scale-10x",
+   "disposition": "passed",
+   "finding": "directory is 10 cards; JSON index"
+  },
+  {
+   "item": "scale-100x",
+   "disposition": "passed",
+   "finding": "static; no server"
+  },
+  {
+   "item": "api-disappearance",
+   "disposition": "mitigated",
+   "finding": "GitHub Pages dependency; verification works fully offline"
+  },
+  {
+   "item": "data-corruption",
+   "disposition": "passed",
+   "finding": "revocation list hash-chained; signature math detects tampering"
+  },
+  {
+   "item": "unexpected-users",
+   "disposition": "passed",
+   "finding": "verify tab accepts pasted JSON or ?card= links"
+  },
+  {
+   "item": "credential-leak",
+   "disposition": "passed",
+   "finding": "private keys generated in-browser, never leave; secret scan clean; dogfood publishes public keys only"
+  },
+  {
+   "item": "hallucination",
+   "disposition": "passed",
+   "finding": "verify math, not claims; no behavioral assertions"
+  },
+  {
+   "item": "malicious-instructions",
+   "disposition": "passed",
+   "finding": "no prompt surface; JSON parser only"
+  },
+  {
+   "item": "memory-poisoning",
+   "disposition": "passed",
+   "finding": "no memory surface"
+  }
+ ]
+}
