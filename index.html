@@ -9,8 +9,32 @@
 <script src="vendor/nacl.js"></script>
 <script src="identity.js"></script>
 <script src="https://cumulativewebinc.github.io/cwi-i18n/i18n.js" data-app="identity-ledger"></script>
+<!-- CWI-OS:head -->
+<meta name="description" content="Portable, verifiable identity cards for AI agents. An agent mints a signed card binding name + controller + venue handles + Ed25519 public key + validity window. Anyone can verify the signature offline — no CWI ">
+<link rel="canonical" href="https://cumulativewebinc.github.io/cwi-identity-ledger/">
+<link rel="icon" href="brand/cwi-logo.jpg">
+<meta name="theme-color" content="#0b0b0e">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cumulative Web Inc">
+<meta property="og:title" content="Identity Ledger — Portable, verifiable identity cards for AI agents">
+<meta property="og:description" content="An agent mints a signed card binding name + controller + venue handles + Ed25519 public key + validity window. Anyone can verify the signature offline — no CWI server involved. Revocation runs through">
+<meta property="og:url" content="https://cumulativewebinc.github.io/cwi-identity-ledger/">
+<meta property="og:image" content="https://cumulativewebinc.github.io/cwi-identity-ledger/brand/cwi-logo.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Identity Ledger — Portable, verifiable identity cards for AI agents">
+<meta name="twitter:description" content="An agent mints a signed card binding name + controller + venue handles + Ed25519 public key + validity window. Anyone can verify the signature offline — no CWI server involved. Revocation runs through">
+<meta name="twitter:image" content="https://cumulativewebinc.github.io/cwi-identity-ledger/brand/cwi-logo.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Identity Ledger", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web", "url": "https://cumulativewebinc.github.io/cwi-identity-ledger/", "author": {"@type": "Organization", "name": "Cumulative Web Inc", "url": "https://github.com/CumulativeWebInc"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "An agent mints a signed card binding name + controller + venue handles + Ed25519 public key + validity window. Anyone can verify the signature offline \u2014 no CWI server involved. Revocation runs through an append-only hash-chained list.", "isAccessibleForFree": true}</script>
 </head>
 <body>
+<!-- CWI-OS:brand-header -->
+<div class="cwi-os-header" style="display:flex;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.35);max-width:1100px;margin:0 auto;">
+<a href="https://cumulativewebinc.github.io/cwi-identity-ledger/" aria-label="Cumulative Web Inc — Identity Ledger home"><img src="brand/cwi-logo.jpg" alt="Cumulative Web Inc logo" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex:none;"></a>
+<div style="line-height:1.25;"><div style="font-weight:700;letter-spacing:.04em;font-size:13px;">Cumulative Web Inc</div>
+<div style="font-size:15px;font-weight:600;">Identity Ledger <span style="opacity:.65;font-weight:400;">· Agent Deck SKU #37</span></div>
+<div style="font-size:12.5px;opacity:.7;">Portable, verifiable identity cards for AI agents</div></div>
+<span style="margin-left:auto;font-size:11px;padding:3px 10px;border:1px solid #22c55e;border-radius:999px;color:#22c55e;">● LIVE</span>
+</div>
 <header class="site-header">
   <div class="brand">
     <div class="brand-badge">CWI</div>
@@ -270,5 +294,23 @@
   }
 })();
 </script>
+
+<!-- CWI-OS:cta -->
+<section class="cwi-os-cta" style="max-width:1100px;margin:48px auto;padding:28px 22px;border:1px solid rgba(255,255,255,.14);border-radius:14px;text-align:center;background:rgba(255,255,255,.03);">
+<h2 style="margin:0 0 8px;font-size:22px;">Mint a verifiable identity card</h2>
+<p style="margin:0 auto 18px;max-width:640px;opacity:.85;font-size:14.5px;">Generate a keypair in your browser, sign your card, download the JSON. Private keys never leave your browser. Verify any card offline.</p>
+<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+<a href="https://cumulativewebinc.github.io/cwi-identity-ledger/" style="padding:11px 26px;border-radius:9px;background:#FFB224;color:#111;font-weight:700;text-decoration:none;">Mint your card</a>
+<a href="mailto:hp@cumulativeweb.com" style="padding:11px 26px;border-radius:9px;border:1px solid rgba(255,255,255,.3);color:inherit;text-decoration:none;">Contact Cumulative Web Inc</a>
+</div></section>
+<!-- CWI-OS:brand-footer -->
+<footer class="cwi-os-footer" style="max-width:1100px;margin:40px auto 0;padding:22px 18px 30px;border-top:1px solid rgba(255,255,255,.12);display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12.5px;opacity:.9;">
+<img src="brand/cwi-logo.jpg" alt="Cumulative Web Inc logo" style="width:30px;height:30px;border-radius:50%;object-fit:cover;">
+<div>© 2026 <strong>Cumulative Web Inc</strong> · Identity Ledger is free to use. <a href="https://cumulativewebinc.github.io/cwi-identity-ledger/os-fit/completion-verdict.json" style="color:inherit;">OS status</a></div>
+<div style="margin-left:auto;display:flex;gap:14px;">
+<a href="https://github.com/CumulativeWebInc" target="_blank" rel="noopener" style="color:inherit;">GitHub</a>
+<a href="https://github.com/CumulativeWebInc/cwi-identity-ledger" target="_blank" rel="noopener" style="color:inherit;">Source</a>
+<a href="mailto:hp@cumulativeweb.com" style="color:inherit;">hp@cumulativeweb.com</a></div>
+</footer>
 </body>
 </html>
