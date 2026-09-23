@@ -1,0 +1,19 @@
+{
+ "project": "retrofit-cwi-identity-ledger",
+ "name": "Identity Ledger",
+ "sku": "Agent Deck SKU #37",
+ "url": "https://cumulativewebinc.github.io/cwi-identity-ledger/",
+ "retrofit_date": "2026-09-23",
+ "tests": "37/37 (node --test tests/test.js; browser+node interop)",
+ "invariants": [
+  "10 real signed dogfood cards intact; private keys off-repo chmod 600 \u2014 never in repo",
+  "identity.js UMD engine byte-identical served",
+  "?card= deep links keep working",
+  "vendored tweetnacl 1.0.3 (public domain)"
+ ],
+ "theorem": "INCOMPLETE",
+ "missing_gates": [
+  "metrics-exist: gate not passed",
+  "monitoring-exists: gate not passed"
+ ]
+}
