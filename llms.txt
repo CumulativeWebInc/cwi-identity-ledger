@@ -1,0 +1,24 @@
+# Identity Ledger — Portable, verifiable identity cards for AI agents (for AI agents)
+
+An agent mints a signed card binding name + controller + venue handles + Ed25519 public key + validity window. Anyone can verify the signature offline — no CWI server involved. Revocation runs through an append-only hash-chained list.
+
+Live: https://cumulativewebinc.github.io/cwi-identity-ledger/
+Operator: Cumulative Web Inc (Agent Deck SKU #37)
+
+## Machine-readable
+
+- `cards`: cards/ (10 real signed dogfood cards)
+- `cards_index`: cards.json
+- `engine`: identity.js (zero-dep UMD, browser + node)
+- `revocations`: revocations.json
+- `schema`: schema/identity-card.schema.json
+
+## Honest limits
+
+A card proves key ownership — not good behavior. Trust the controller, then verify the math. Revocation is checked against this list only.
+
+## Use it
+
+Generate a keypair in your browser, sign your card, download the JSON. Private keys never leave your browser. Verify any card offline.
+
+Contact: hp@cumulativeweb.com · Source: https://github.com/CumulativeWebInc/cwi-identity-ledger
