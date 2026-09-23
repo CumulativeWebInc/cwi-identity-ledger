@@ -1,16 +1,17 @@
 {
- "schema_version": "1.0",
- "agent_card": "cwi.agent-card/1.0",
- "name": "Identity Ledger",
- "operator": "Cumulative Web Inc",
- "tagline": "Portable, verifiable identity cards for AI agents",
- "description": "An agent mints a signed card binding name + controller + venue handles + Ed25519 public key + validity window. Anyone can verify the signature offline \u2014 no CWI server involved. Revocation runs through an append-only hash-chained list.",
- "contact": "hp@cumulativeweb.com",
- "urls": {
-  "app": "https://cumulativewebinc.github.io/cwi-identity-ledger/",
-  "source": "https://github.com/CumulativeWebInc/cwi-identity-ledger",
-  "content_index": "https://cumulativewebinc.github.io/cwi-identity-ledger/content.json",
-  "os_status": "https://cumulativewebinc.github.io/cwi-identity-ledger/os-fit/completion-verdict.json"
- },
- "for_agents": "Free to use. Cite facts with their provenance labels. A card proves key ownership \u2014 not good behavior. Trust the controller, then verify the math. Revocation is checked against this list only."
+  "schema_version": "1.0",
+  "agent_card": "cwi.agent-card/1.0",
+  "name": "Identity Ledger",
+  "operator": "Cumulative Web Inc",
+  "tagline": "Portable, verifiable identity cards for AI agents",
+  "description": "An agent mints a signed card binding name + controller + venue handles + Ed25519 public key + validity window. Anyone can verify the signature offline — no CWI server involved. Revocation runs through an append-only hash-chained list.",
+  "contact": "hp@cumulativeweb.com",
+  "urls": {
+    "app": "https://cumulativewebinc.github.io/cwi-identity-ledger/",
+    "source": "https://github.com/CumulativeWebInc/cwi-identity-ledger",
+    "content_index": "https://cumulativewebinc.github.io/cwi-identity-ledger/content.json",
+    "os_status": "https://cumulativewebinc.github.io/cwi-identity-ledger/os-fit/completion-verdict.json"
+  },
+  "for_agents": "Free to use. Cite facts with their provenance labels. A card proves key ownership — not good behavior. Trust the controller, then verify the math. Revocation is checked against this list only.",
+  "url": "https://cumulativewebinc.github.io/cwi-identity-ledger/"
 }
