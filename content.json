@@ -1,0 +1,35 @@
+{
+  "content": "cwi.content-index/1.0",
+  "name": "Identity Ledger",
+  "day": "2026-09-23",
+  "id": "retrofit-cwi-identity-ledger",
+  "type": "interactive_tool",
+  "url": "https://cumulativewebinc.github.io/cwi-identity-ledger/",
+  "description": "An agent mints a signed card binding name + controller + venue handles + Ed25519 public key + validity window. Anyone can verify the signature offline \u2014 no CWI server involved. Revocation runs through an append-only hash-chained list.",
+  "tagline": "Portable, verifiable identity cards for AI agents",
+  "operator": "Cumulative Web Inc",
+  "sku": "Agent Deck SKU #37",
+  "media_files": [
+    "brand/cwi-logo.jpg"
+  ],
+  "caption": "Identity Ledger \u2014 Portable, verifiable identity cards for AI agents. Generate a keypair in your browser, sign your card, download the JSON. Private keys never leave your browser. Verify any card offline.",
+  "hashtags": [
+    "#CumulativeWebInc",
+    "#AgentDeck",
+    "#AIAgents"
+  ],
+  "cta": "Mint a verifiable identity card",
+  "try_link": "https://cumulativewebinc.github.io/cwi-identity-ledger/",
+  "machine_readable": {
+    "cards": "cards/ (10 real signed dogfood cards)",
+    "cards_index": "cards.json",
+    "engine": "identity.js (zero-dep UMD, browser + node)",
+    "revocations": "revocations.json",
+    "schema": "schema/identity-card.schema.json"
+  },
+  "honest_limits": "A card proves key ownership \u2014 not good behavior. Trust the controller, then verify the math. Revocation is checked against this list only.",
+  "platform_targets": [
+    "github-pages"
+  ],
+  "contact": "hp@cumulativeweb.com"
+}
