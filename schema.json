@@ -1,0 +1,14 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Identity Ledger (#37)",
+  "url": "https://cumulativewebinc.github.io/cwi-identity-ledger/",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "author": {
+    "@type": "Organization",
+    "name": "Cumulative Web Inc",
+    "url": "https://cumulativeweb.com/"
+  },
+  "description": "Portable Ed25519-signed agent identity cards with mint, verify, and directory functions."
+}
