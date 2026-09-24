@@ -10,5 +10,6 @@
     "name": "Cumulative Web Inc",
     "url": "https://cumulativeweb.com/"
   },
-  "description": "Portable Ed25519-signed agent identity cards with mint, verify, and directory functions."
+  "description": "Portable Ed25519-signed agent identity cards with mint, verify, and directory functions.",
+  "schema_version": "1.0.0"
 }
